@@ -53,6 +53,9 @@ app.use(formData.union());
 connectDB();
 
 // paths
+app.use('/', (req, res, next) => {
+  res.status(200).send(<h1>The backend is working I guess...</h1>)
+})
 app.use('/auth', authRoutes);
 app.use('/polls', pollRoutes);
 
