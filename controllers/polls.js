@@ -167,7 +167,7 @@ exports.commentPoll = async (req, res, next) => {
         const pollUserId = pollUser._id.toString();
         poll.comments.push({ mainComment: { comment, user: user._id } });
         await poll.save();
-        const newPoll = await Polls.findById(id).lean()
+        const newPoll = await Polls.findById(id).lean();
         const newComment = newPoll.comments[poll.comments.length - 1];
         const commentUser = await User.findById(newComment.mainComment.user);
         newComment.mainComment = { comment: newComment.mainComment.comment, userName: commentUser.name };

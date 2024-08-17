@@ -72,6 +72,10 @@ io.on('connection', (socket) => {
   socket.on('voted_poll', (data) => {
     io.to(data.poll_userId).emit('voted_poll_notify', data.pollId);
   });
+
+  socket.on("disconnect", () => {
+    console.log(`socket disconnected with id: ${socket.id}`);
+  })
 });
 
 server.listen(process.env.PORT, () => {
