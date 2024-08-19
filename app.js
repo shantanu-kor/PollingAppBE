@@ -5,6 +5,7 @@ const formData = require("express-form-data");
 const os = require("os");
 const http = require('http');
 const { Io } = require('./utils/socket');
+const helmet = require('helmet');
 
 const authRoutes = require('./routes/authRoutes');
 const pollRoutes = require('./routes/pollRoutes');
@@ -33,6 +34,8 @@ const server = http.createServer(app);
 
 let io = Io.setIo(server);
 io = Io.getIo();
+
+app.use(helmet());
 
 app.use(cors({
   origin: "*",
